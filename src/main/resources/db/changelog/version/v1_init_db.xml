@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="db.changelog-master.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1" author="IV">
+        <comment>create weather_data</comment>
+        <sql>
+            CREATE TABLE weather_data (
+                id bigint PRIMARY KEY,
+                temperature_c float(53) NOT NULL,
+                wind_mph float(53) NOT NULL,
+                pressure_mb float(53) NOT NULL,
+                air_humidity smallint NOT NULL,
+                w_condition varchar(50) NOT NULL,
+                location varchar(50) NOT NULL,
+                w_date date NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="IV">
+        <comment>create sequence for weather_data ids</comment>
+        <sql>
+            CREATE SEQUENCE weather_data_id_seq START 1000 INCREMENT 100
+            OWNED BY weather_data.id;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

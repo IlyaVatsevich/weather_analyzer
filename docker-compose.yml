@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+  weather_analyzer_app:
+    build: .
+    image: weather_analyzer:1.0.0
+    container_name: weather_analyzer
+    environment:
+      DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/postgres
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-db
+
+  postgres-db:
+    image: postgres:14.4-alpine
+    container_name: postgres-db
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: alchemy_db
+    ports:
+      - "5432:5432"

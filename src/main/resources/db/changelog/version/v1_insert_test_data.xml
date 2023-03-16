@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="db.changelog-master.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="3" author="IV">
+        <comment>Insert some test data</comment>
+        <sql>
+            INSERT INTO weather_data (id, temperature_c, wind_mph, pressure_mb, air_humidity, w_condition, location, w_date)
+            VALUES (nextval('weather_data_id_seq'), 0.5, 8.6, 1024, 75, 'Sunny', 'Minsk', '2023-03-10'),
+                   (nextval('weather_data_id_seq'), -3.4, 9.4, 1020, 80, 'Overcast', 'Minsk', '2023-03-10'),
+                   (nextval('weather_data_id_seq'), -2.5, 9.6, 1023, 85, 'Light snow showers', 'Minsk', '2023-03-10'),
+                   (nextval('weather_data_id_seq'), -5.5, 8.6, 1024, 75, 'Moderate or heavy snow showers', 'Minsk', '2023-03-11'),
+                   (nextval('weather_data_id_seq'), 0.0, 8.4, 1019, 80, 'Light snow', 'Minsk', '2023-03-11'),
+                   (nextval('weather_data_id_seq'), 1.5, 7.6, 1013, 83, 'Overcast', 'Minsk', '2023-03-11'),
+                   (nextval('weather_data_id_seq'), 2.5, 9.5, 1017, 90, 'Overcast', 'Minsk', '2023-03-12'),
+                   (nextval('weather_data_id_seq'), 3.5, 9.3, 1015, 70, 'Overcast', 'Minsk', '2023-03-12'),
+                   (nextval('weather_data_id_seq'), 5.5, 8.3, 1016, 74, 'Sunny', 'Minsk', '2023-03-12');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

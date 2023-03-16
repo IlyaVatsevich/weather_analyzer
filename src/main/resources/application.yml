@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    default-property-inclusion: non_empty
+  datasource:
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_PASSWORD:postgres}
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: ${SHOW_SQL:true}
+        format_sql: ${FORMAT_SQL:true}
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+  application:
+    name: weather_analyzer
+
+weather-api:
+  key: ${WEATHER_API_KEY:f8a16e4ccc224cbf8c564211231503}
+  url: ${WEATHER_API_URL:http://api.weatherapi.com/v1/current.json?key=${weather-api.key} &q=${weather-api.city}&aqi=${weather-api.air-quality}}
+  city: ${CITY:Minsk}
+  air-quality: ${AQI:no}
+scheduled-period:
+  fixed-rate: ${UPLOAD_SCHEDULE:120000}
